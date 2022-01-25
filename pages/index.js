@@ -1,39 +1,7 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import appConfig from '../config.json'
-
-
-//componente que terá todos os estilos "globais" que podem ser usados em qualquer página
-//é uma convenção chamar de GlobalStyle 
-//será usado para o CSS Reset
-//usa o parâmetro global para ser entendido realmente como global
-function GlobalStyle() {
-    return (
-      <style global jsx>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          list-style: none;
-        }
-        body {
-          font-family: 'Open Sans', sans-serif;
-        }
-        /* App fit Height */ 
-        html, body, #__next {
-          min-height: 100vh;
-          display: flex;
-          flex: 1;
-        }
-        #__next {
-          flex: 1;
-        }
-        #__next > * {
-          flex: 1;
-        }
-        /* ./App fit Height */ 
-      `}</style>
-    );
-}
+import React from 'react';
+import { useRouter } from 'next/router';
 
 
 //componente React para criar nossa própria tag de título para diferentes tipos de título
@@ -90,11 +58,20 @@ export default function PaginaInicial() {
     b/b8/Nico_Robin
     0/09/Brook
     */
-    const pirate = '7/75/Tony_Tony_Chopper';
+    // const pirate = '7/75/Tony_Tony_Chopper';
+    /* useState irá retornar dois valores: o primeiro é o valor que você passa no parâmetro
+    da função, e o segundo é uma função setter (no React denominam "hook"), que irá alterar 
+    o valor da variável quando houver uma mudança de estado que altere a variável. O retorno 
+    não é um array; é a forma usada para dizer que a função retorna mais de um valor 
+    (lembra um pouco de tupla em Python)    
+    */
+    const [pirate, setPirate] = React.useState('7/75/Tony_Tony_Chopper');
+
+    //hook que irá lidar com as mudanças para outras páginas
+    const roteamento = useRouter();
 
     return (
         <>
-            <GlobalStyle />
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -123,6 +100,17 @@ export default function PaginaInicial() {
                     {/* Formulário */}
                     <Box
                         as="form"
+
+                        // função que irá alterar o estado quando o usuário clicar no botão
+                        onSubmit={function(event){
+                            //impede que a ação padrão aconteça 
+                            //no caso, seria a ida para outra página
+                            //ganhamos o controle para decidir o que fazer
+                            event.preventDefault()
+                            
+                            //altera de página pelo hook do next, sem precisar de um refresh no navegador
+                            roteamento.push('/chat')
+                        }}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                             width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -134,7 +122,20 @@ export default function PaginaInicial() {
                         {appConfig.name}
                         </Text>
 
+                        {/* campo para digitar o usuário */}
                         <TextField
+                            value={pirate}
+                            // função para verificar mudanças de estados nessa tag
+                            onChange={function(event){
+                                //event traz diversas informações; use o console para ver
+                                // console.log(event)
+
+                                //event.target.value traz o valor escrito na caixa de texto
+                                const pirateName = event.target.value;
+
+                                //altera o valor da variável pirate por meio do setter (usando o React)
+                                setPirate(pirateName);
+                            }}
                             fullWidth
                             textFieldColors={{
                                 neutral: {
