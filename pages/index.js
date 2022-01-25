@@ -1,5 +1,6 @@
-import appConfig from '../config.json'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import appConfig from '../config.json'
+
 
 //componente que terá todos os estilos "globais" que podem ser usados em qualquer página
 //é uma convenção chamar de GlobalStyle 
