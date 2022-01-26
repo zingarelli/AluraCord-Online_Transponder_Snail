@@ -49,7 +49,7 @@ function Title(props){
 export default function PaginaInicial() {
     //altera a imagem de perfil padrão da home
     /*
-    Outras opções. Tentar achar um jeito melhor.
+    Ainda está hardcoded... Outras opções:
     5/5d/Roronoa_Zoro
     f/f9/Monkey_D._Luffy
     3/3b/Nami
@@ -58,7 +58,6 @@ export default function PaginaInicial() {
     b/b8/Nico_Robin
     0/09/Brook
     */
-    // const pirate = '7/75/Tony_Tony_Chopper';
     /* useState irá retornar dois valores: o primeiro é o valor que você passa no parâmetro
     da função, e o segundo é uma função setter (no React denominam "hook"), que irá alterar 
     o valor da variável quando houver uma mudança de estado que altere a variável. O retorno 
@@ -66,6 +65,9 @@ export default function PaginaInicial() {
     (lembra um pouco de tupla em Python)    
     */
     const [pirate, setPirate] = React.useState('7/75/Tony_Tony_Chopper');
+    
+    //variável para mostrar o avatar (imagem do usuário)
+    const [avatar, setAvatar] = React.useState(pirate)
 
     //hook que irá lidar com as mudanças para outras páginas
     const roteamento = useRouter();
@@ -131,10 +133,15 @@ export default function PaginaInicial() {
                                 // console.log(event)
 
                                 //event.target.value traz o valor escrito na caixa de texto
-                                const pirateName = event.target.value;
+                                const pirateName = event.target.value;  
 
                                 //altera o valor da variável pirate por meio do setter (usando o React)
                                 setPirate(pirateName);
+
+                                //mostra a imagem se houver mais de 2 caracteres
+                                if(pirateName.length > 2){
+                                    setAvatar(pirateName)
+                                }
                             }}
                             fullWidth
                             textFieldColors={{
@@ -182,7 +189,8 @@ export default function PaginaInicial() {
                                 marginBottom: '16px',
                             }}
                             // src={`https://github.com/${username}.png`}
-                            src={`https://static.wikia.nocookie.net/onepiece/images/${pirate}%27s_Current_Wanted_Poster.png`}
+
+                            src={`https://static.wikia.nocookie.net/onepiece/images/${avatar}%27s_Current_Wanted_Poster.png`}
                         />
                         <Text
                             variant="body4"
