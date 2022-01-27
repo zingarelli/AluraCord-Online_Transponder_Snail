@@ -11,6 +11,8 @@ export default function ChatPage() {
     - [X] Criar campo para digitar a mensagem
     - [X] Tratar o texto e ação de pressionar o Enter por meio do onChange e useState
     - [X] Atualizar a lista de mensagem com a nova mensagem
+    - [X] Desafio: Colocar o botão de OK para enviar a mensagem
+    - [ ] Desafio: Colocar um botão para apagar uma mensagem
     */
 
     //guarda a mensagem digitada pelo usuário
@@ -84,6 +86,12 @@ export default function ChatPage() {
 
                     <Box
                         as="form"
+
+                        //impede o refresh ao clicar no botão de enviar mensagem
+                        onSubmit={(event) => {
+                            event.preventDefault()
+                        }}
+
                         styleSheet={{
                             display: 'flex',
                             alignItems: 'center',
@@ -110,7 +118,7 @@ export default function ChatPage() {
                             placeholder="Insira sua mensagem aqui..."
                             type="textarea"
                             styleSheet={{
-                                width: '100%',
+                                width: '90%',
                                 border: '0',
                                 resize: 'none',
                                 borderRadius: '5px',
@@ -118,6 +126,18 @@ export default function ChatPage() {
                                 backgroundColor: appConfig.theme.colors.neutrals[800],
                                 marginRight: '12px',
                                 color: appConfig.theme.colors.neutrals[200],
+                            }}
+                        />
+
+                        < Button 
+                            onClick={() => {
+                                handleNovaMensagem(mensagem)
+                            }}
+                            type='submit'
+                            label='Send'
+                            styleSheet={{
+                                width: '10%',
+                                height: '85%',
                             }}
                         />
                     </Box>
@@ -136,8 +156,8 @@ function Header() {
                     Online Transponder Snail
                 </Text>
                 <Button
-                    variant='tertiary'
-                    colorVariant='neutral'
+                    // variant='secondary'
+                    // colorVariant='neutral'
                     label='Logout'
                     href="/"
                 />
