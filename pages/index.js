@@ -49,25 +49,33 @@ function Title(props){
 export default function PaginaInicial() {
     //altera a imagem de perfil padrão da home
     /*
-    Ainda está hardcoded... Outras opções:
-    5/5d/Roronoa_Zoro
-    f/f9/Monkey_D._Luffy
-    3/3b/Nami
-    c/ca/Sanji
-    7/75/Tony_Tony_Chopper
-    b/b8/Nico_Robin
-    0/09/Brook
+        Fazendo isso um pouco hardcoded, porque a imagem está sendo carregada de uma
+        URL da wiki fandom de One Piece. Depois tentar fazer isso carregando de um banco
+        ou de alguma forma mais elegante.
+        Usando um object funcionando como se fosse um dictionary; a chave será o nome
+        do pirata, e o valor será o código necessário para carregar a imagem 
     */
+    var pirates = {
+        luffy: 'f/f9/Monkey_D._Luffy',
+        zoro: '5/5d/Roronoa_Zoro',
+        nami: '3/3b/Nami',
+        sanji: 'c/ca/Sanji',
+        chopper: '7/75/Tony_Tony_Chopper',
+        robin: 'b/b8/Nico_Robin'
+    };
+
     /* useState irá retornar dois valores: o primeiro é o valor que você passa no parâmetro
     da função, e o segundo é uma função setter (no React denominam "hook"), que irá alterar 
     o valor da variável quando houver uma mudança de estado que altere a variável. O retorno 
     não é um array; é a forma usada para dizer que a função retorna mais de um valor 
     (lembra um pouco de tupla em Python)    
     */
-    const [pirate, setPirate] = React.useState('7/75/Tony_Tony_Chopper');
+    const [pirate, setPirate] = React.useState('Chopper');
+
+    //console.log(pirate)
     
     //variável para mostrar o avatar (imagem do usuário)
-    const [avatar, setAvatar] = React.useState(pirate)
+    const [avatar, setAvatar] = React.useState(pirates['chopper'])
 
     //hook que irá lidar com as mudanças para outras páginas
     const roteamento = useRouter();
@@ -138,10 +146,21 @@ export default function PaginaInicial() {
                                 //altera o valor da variável pirate por meio do setter (usando o React)
                                 setPirate(pirateName);
 
-                                //mostra a imagem se houver mais de 2 caracteres
-                                if(pirateName.length > 2){
-                                    setAvatar(pirateName)
+                                //console.log(pirateName)
+
+                                //console.log(pirates[pirateName] === undefined)
+
+                                //mostra a imagem se houver mais de 2 caracteres e existir no dicionário de piratas
+                                if(pirateName.length > 2 & pirates[pirateName.toLowerCase()] !== undefined ){
+                                    //console.log('entrei no if');
+                                    setAvatar(pirates[pirateName.toLowerCase()]);
                                 }
+                                else{
+                                    //console.log('entrei no else');
+                                    setAvatar('nulo');
+                                }
+
+                                // console.log(pirate, avatar);
                             }}
                             fullWidth
                             textFieldColors={{
@@ -201,7 +220,7 @@ export default function PaginaInicial() {
                                 borderRadius: '1000px'
                             }}
                         >
-                            {pirate.substring(5).replace(/_/g, ' ')}
+                            {pirate}
                         </Text>
                     </Box>
                     {/* Photo Area */}
