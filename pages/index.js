@@ -1,3 +1,7 @@
+// Images are from One Piece Wiki and WallpaperSafari
+// https://onepiece.fandom.com/wiki/One_Piece_Wiki
+// https://wallpapersafari.com/
+
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import appConfig from '../config.json'
 import React from 'react';
@@ -117,9 +121,17 @@ export default function PaginaInicial() {
                             //no caso, seria a ida para outra página
                             //ganhamos o controle para decidir o que fazer
                             event.preventDefault()
-                            
-                            //altera de página pelo hook do next, sem precisar de um refresh no navegador
-                            roteamento.push('/chat')
+
+                            //tratamento para o caso de usuário não encontrado
+                            if (pirates[pirate.toLowerCase()] === undefined){
+                                roteamento.push('unregistered')
+                            }
+                            else{
+                                //altera de página pelo hook do next, sem precisar de um refresh no navegador
+                                //o Router também vai me entregar o que eu passo na URL, para poder ser 
+                                //utilizado na outra página
+                                roteamento.push(`/chat?pirate=${pirate}`)
+                            }
                         }}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -132,6 +144,9 @@ export default function PaginaInicial() {
                         {appConfig.name}
                         </Text>
 
+                        <Text styleSheet={{ color: appConfig.theme.colors.neutrals[600] }}>
+                            Registered pirates to login: Luffy, Robin, Zoro, Nami, Chopper and Sanji.
+                        </Text>
                         {/* campo para digitar o usuário */}
                         <TextField
                             value={pirate}
