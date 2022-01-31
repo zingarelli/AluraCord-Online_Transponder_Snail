@@ -306,7 +306,8 @@ function MessageList(props) {
                                     }}
                                     tag="span"
                                 >
-                                    {(new Date().toLocaleDateString())}
+                                    {/* {(new Date().toLocaleDateString())} */}
+                                    {mensagem.created_at}
                                 </Text>
                             </Box>
                         </Box>
