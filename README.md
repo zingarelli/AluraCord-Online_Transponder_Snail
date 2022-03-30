@@ -28,6 +28,8 @@ o banco não esteja mais funcionando.
 ### Chat
 ![image](https://user-images.githubusercontent.com/19349339/160727699-5b3281bf-a37a-4850-b0e1-90ccc0eb6675.png)
 
+### Destaque para o botão com envio de emojis
+![image](https://user-images.githubusercontent.com/19349339/160728168-6f76f9aa-0f3e-4c62-83e6-218503dc001d.png)
 
 ## Agradecimentos
 Agradeço à Alura por essa semana intensa em que mergulhei em tecnologias que tinha zero conhecimento, mas que me diverti e aprendi muito. Um agradecimento 
