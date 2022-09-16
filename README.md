@@ -11,7 +11,7 @@ Estilizei meu projeto com uma temática de One Piece, e dei a ele o nome de "Onl
 | :rocket: URL         | https://aluracord-online-transponder-snail.vercel.app
 | :fire: Desafio     | https://www.alura.com.br/imersao-react
 
-![screenshot parcial da tela de login](https://user-images.githubusercontent.com/19349339/190253982-a5f9dadd-7961-4b59-95fc-a6e4efaf0175.png#vitrinedev)
+![](https://user-images.githubusercontent.com/19349339/190253982-a5f9dadd-7961-4b59-95fc-a6e4efaf0175.png#vitrinedev)
 
 ## Detalhes do projeto
 
