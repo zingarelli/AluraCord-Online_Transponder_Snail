@@ -6,7 +6,7 @@ Estilizei meu projeto com uma temática de One Piece, e dei a ele o nome de "Onl
 
 | :placard: Vitrine.Dev |     |
 | -------------  | --- |
-| :sparkles: Nome        | **Online Transponder Snail**
+| :sparkles: Nome        | **Chat do One Piece**
 | :label: Tecnologias | HTML, CSS, JavaScript, React, Nodejs
 | :rocket: URL         | https://aluracord-online-transponder-snail.vercel.app
 | :fire: Desafio     | https://www.alura.com.br/imersao-react
